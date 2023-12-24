@@ -95,7 +95,6 @@ class savepersondetails(APIView):
             latestindex = '1'
         else:
             latestindex = idlst[-1] + 1
-
         condata = {
             'ids' : str(latestindex),
         }
