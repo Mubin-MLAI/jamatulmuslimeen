@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.core.exceptions import ObjectDoesNotExist
 
+
+from django.template.loader import get_template
+
 # from django.template import loader
 #  template = loader.get_template('template.html')
 
@@ -91,6 +94,7 @@ class savepersondetails(APIView):
         for i in  idcount.values_list():
             idlst.append(i[0])
         if len(idlst) == 0:
+
             latestindex = '0'
         else:
             latestindex = idlst[-1] + 1
@@ -188,6 +192,7 @@ class listResume(APIView):
             return render(request, "listResume.html", {'profile':profile})   
         return render(request, "listResume.html", status=status.HTTP_202_ACCEPTED)
 
+
 import io as BytesIO 
 from xhtml2pdf import pisa
 from django.template.loader import get_template
@@ -207,6 +212,26 @@ def render_to_pdf(template_src, context_dict={}):
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+
+# import io as BytesIO 
+# from xhtml2pdf import pisa
+# from django.template.loader import get_template
+# from django.template import Context
+# from django.http import HttpResponse
+# from html import escape
+
+
+
+# def render_to_pdf(template_src, context_dict={}):
+#     template = get_template(template_src)
+#     context = dict(context_dict)
+#     html  = template.render(context)
+#     result = BytesIO.BytesIO ()
+
+#     pdf = pisa.pisaDocument(BytesIO .BytesIO (html.encode("ISO-8859-1")), result)
+#     if not pdf.err:
+#         return HttpResponse(result.getvalue(), content_type='application/pdf')
+#     return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
 
 
 
