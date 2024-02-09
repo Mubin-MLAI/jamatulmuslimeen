@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.core.exceptions import ObjectDoesNotExist
+import reportlab
+
 
 
 from django.template.loader import get_template
@@ -94,7 +96,6 @@ class savepersondetails(APIView):
         for i in  idcount.values_list():
             idlst.append(i[0])
         if len(idlst) == 0:
-
             latestindex = '0'
         else:
             latestindex = idlst[-1] + 1
@@ -107,6 +108,10 @@ class savepersondetails(APIView):
         return render(request, 'registrationform.html', {'context': condata['ids'] })
     
     def post(self, request):
+
+        upfiles = request.FILES['Aadhar_card']
+        upfiles1 = request.FILES['Death_certificate']
+        upfiles2 = request.FILES['Other_file']
 
         serializer = metainfoserializer(data=request.data)
         if serializer.is_valid():
@@ -122,6 +127,7 @@ class savepersondetails(APIView):
                                                 USERID=request.user.username,
                                                 Applicant_name=request.data.get('Applicant_name'),
                                                 Deceased_name=request.data.get('Deceased_name'),
+                                                Deceased_age=request.data.get('Deceased_age'),
                                                 Gender=request.data.get('Gender'),
                                                 Contact_number=request.data.get('Contact_number'),
                                                 Address=request.data.get('Address'),
@@ -132,6 +138,9 @@ class savepersondetails(APIView):
                                                 Cause_of_death=request.data.get('Cause_of_death'),
                                                 Relationship=request.data.get('Relationship'),
                                                 Form_number=request.data.get('Form_number'),
+                                                Aadhar_card=upfiles,
+                                                Death_certificate=upfiles1,
+                                                Other_file=upfiles2,
                                                 Amount=request.data.get('Amount'))
 
             getdata = metainformation.objects.filter(Contact_number=request.data.get('Contact_number'))
@@ -193,49 +202,26 @@ class listResume(APIView):
         return render(request, "listResume.html", status=status.HTTP_202_ACCEPTED)
 
 
-import io as BytesIO 
-from xhtml2pdf import pisa
-from django.template.loader import get_template
-from django.template import Context
+from io import BytesIO
 from django.http import HttpResponse
-from html import escape
+from django.template.loader import get_template
 
-
+from xhtml2pdf import pisa
 
 def render_to_pdf(template_src, context_dict={}):
     template = get_template(template_src)
-    context = dict(context_dict)
-    html  = template.render(context)
-    result = BytesIO.BytesIO ()
-
-    pdf = pisa.pisaDocument(BytesIO .BytesIO (html.encode("ISO-8859-1")), result)
+    html  = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("utf-8")), result)
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
-
-# import io as BytesIO 
-# from xhtml2pdf import pisa
-# from django.template.loader import get_template
-# from django.template import Context
-# from django.http import HttpResponse
-# from html import escape
-
-
-
-# def render_to_pdf(template_src, context_dict={}):
-#     template = get_template(template_src)
-#     context = dict(context_dict)
-#     html  = template.render(context)
-#     result = BytesIO.BytesIO ()
-
-#     pdf = pisa.pisaDocument(BytesIO .BytesIO (html.encode("ISO-8859-1")), result)
-#     if not pdf.err:
-#         return HttpResponse(result.getvalue(), content_type='application/pdf')
-#     return HttpResponse('We had some errors<pre>%s</pre>' % escape(html))
+    return None
 
 
 
 class viewResume(APIView):
+
+
 
     def post(self, request):
         try:
@@ -247,10 +233,24 @@ class viewResume(APIView):
                      'user_profile':user_profile
                 }
                 html = template.render(context)
-                # return render_to_pdf("burial.html", context)
-                return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+                pdf = render_to_pdf('burial.html' ,context)
+                if pdf:
+                    response = HttpResponse(pdf, content_type='application/pdf')
+                    filename = "Invoice_%s.pdf" %("12341231")
+                    content = "inline; filename='%s'" %(filename)
+                    download = request.GET.get("download")
+                    if download:
+                        content = "attachment; filename='%s'" %(filename)
+                    response['Content-Disposition'] = content
+                    return response
+                return HttpResponse("Not found")
+                # return HttpResponse(pdf, content_type='application/pdf')
+                
+                # return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
             if  'button2' in request.POST:
                 return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+            
+
         except ObjectDoesNotExist:
             messages.error(request, 'Invalid Number OR Number Does Not Exist')
             return redirect('listResume')

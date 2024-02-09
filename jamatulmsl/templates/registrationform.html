@@ -25,7 +25,7 @@ Registration Form
 
             <!-- creating form for adding resume details -->
             
-            <form action="/addResume" method="post">{% csrf_token %}
+            <form action="/addResume" method="post" enctype="multipart/form-data">{% csrf_token %}
                 <label for="userid" class="form-label">User ID*</label>
                 <div class="form-group">
                     <input type="text" class="form-control mb-3" id="USERID" name="USERID" value="{{user.username}}"
@@ -45,6 +45,11 @@ Registration Form
                 <div class="form-group">
                     <input type="text" class="form-control mb-3" id="Deceased_name" name="Deceased_name"
                         placeholder="Enter Deceased Name" required>
+                </div>
+                <label for="dage" class="form-label">Deceased Age*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Deceased_age" name="Deceased_age"
+                        placeholder="Enter Deceased Age" required>
                 </div>
                 <label for="gen" class="form-label">Gender*</label>
                 <div class="form-group">
@@ -94,6 +99,16 @@ Registration Form
                     <input type="Time" class="form-control mb-3" id="time_of_death" name="time_of_death"
                         placeholder="Enter Time Of Death">
                 </div>
+                
+                <label for="acard" class="form-label">Upload Aadhar card</label>
+                <input type="file" class="form-control mb-3" id="id_Aadhar_card" name="Aadhar_card">
+
+                <label for="dcard" class="form-label">Upload Death Certificate</label>
+                <input type="file" class="form-control mb-3" id="id_Death_certificate" name="Death_certificate">
+
+                <label for="ocard" class="form-label">Upload Other File</label>
+                <input type="file" class="form-control mb-3" id="id_Other_file" name="Other_file">
+                
                 <label for="Amount" class="form-label">Amount*</label>
                 <div class="form-group">
                     <input type="number" class="form-control mb-3" id="Amount" name="Amount"
@@ -107,7 +122,9 @@ Registration Form
 </div>
 </div>
 
-<script>        
+
+
+<script>  
     function Contact_number1(){          
      $('#Contact_number').keypress(function(e) {
          var a = [];

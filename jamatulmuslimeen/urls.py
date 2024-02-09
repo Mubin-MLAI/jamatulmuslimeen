@@ -26,4 +26,7 @@ urlpatterns = [
     path('<int:Contact_number>/', views.viewResume.as_view(), name="viewResume"),
     path('listResume/', views.listResume.as_view(), name="listResume"),
 
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

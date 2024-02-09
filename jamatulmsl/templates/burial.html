@@ -7,256 +7,234 @@
 {% block body %}
 {% load static %}
 <html>
-  <head>
-    <title>{% if pdf_title %}{{ pdf_title }}{% else %}PDF{% endif %}</title>
-    <meta charset="utf-8">
-    <!-- <title>JAMIAT-UL-MUSLIMEEN</title> -->
-    <style>
-      html {
-        font-family: sans-serif;
-        font-size: 10px;
-      }
 
-      * {
-        box-sizing: border-box;
-      }
+<head>
+  <title>{% if pdf_title %}{{ pdf_title }}{% else %}PDF{% endif %}</title>
+  <meta charset="utf-8">
+  <!-- <title>JAMIAT-UL-MUSLIMEEN</title> -->
+  <style>
+    html {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
 
-      body {
-        margin: 0 auto;
-        min-width: 1000px;
-        max-width: 1400px;
-      }
+    * {
+      box-sizing: border-box;
+    }
 
-      /* Layout */
+    body {
+      margin: 0 auto;
+      min-width: 1000px;
+      max-width: 1400px;
+    }
 
-      section {
-        float: left;
-        width: 50%;
-      }
+    /* Layout */
 
-      aside {
-        float: left;
-        width: 30%;
-      }
+    section {
+      float: left;
+      width: 50%;
+    }
 
-      nav {
-        float: left;
-        width: 20%;
-      }
+    aside {
+      float: left;
+      width: 30%;
+    }
 
-      footer {
-        clear: both;
-      }
+    nav {
+      float: left;
+      width: 20%;
+    }
 
-      header,
-      section,
-      aside,
-      nav,
-      footer {
-        padding: 10px;
-      }
+    footer {
+      clear: both;
+    }
 
-      /* header and footer */
+    header,
+    section,
+    aside,
+    nav,
+    footer {
+      padding: 10px;
+    }
 
-      header {
-        border-top: 5px solid rgb(253, 252, 252);
-        border-bottom: 3px solid rgb(111, 3, 253);
+    /* header and footer */
 
-      }
+    header {
+      border-top: 5px solid rgb(253, 252, 252);
+      border-bottom: 3px solid rgb(111, 3, 253);
 
-      footer {
-        border-top: 5px solid rgb(3, 3, 252);
-        border-bottom: 5px solid rgb(3, 28, 253);
-        text-align: center;
-        color: green;
-        font-size: 1.5em;
-      }
+    }
 
-      /* WRITE YOUR CODE BELOW HERE */
+    footer {
+      border-top: 5px solid rgb(3, 3, 252);
+      border-bottom: 5px solid rgb(3, 28, 253);
+      text-align: center;
+      color: green;
+      font-size: 1.5em;
+    }
 
-      h1 {
-        font-size: 3em;
-        text-align: center;
-        color: green;
-      }
+    /* WRITE YOUR CODE BELOW HERE */
 
-      h2 {
-        font-size: 2em;
-      }
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      color: green;
+    }
 
-      h3 {
-        text-align: center;
-        color: green;
-      }
+    h2 {
+      font-size: 2em;
+    }
 
-      p,
-      ol,
-      ul {
-        font-size: 1.5em;
-      }
-
-      body {
-        line-height: 1.5;
-        letter-spacing: 1px;
-        word-spacing: 2px;
-      }
-
-      h1,
-      h2 {
-        letter-spacing: 3px;
-        text-align: center;
-      }
-
-      section h2+p {
-        text-indent: 0px;
-      }
+    h3 {
+      text-align: center;
+      color: green;
+    }
 
 
 
-      p a:link {
-        color: red;
-        outline: none;
-        background: url(http://mdn.github.io/learning-area/css/styling-text/typesetting-a-homepage-start/external-link-52.png);
-        background-repeat: no-repeat;
-        background-size: 1.0em 1.0em;
+    body {
+      line-height: 1.5;
+      letter-spacing: 1px;
+      word-spacing: 2px;
+    }
 
-        padding-left: 20px;
+    h1,
+    h2 {
+      letter-spacing: 3px;
+      text-align: center;
+    }
 
-
-      }
-
-      a:visited {
-        color: red;
-      }
-
-      a:focus {}
-
-      a:hover {
-        background-color: #a66;
-        text-decoration: none;
-      }
-
-      a:active {
-        color: #a66;
-        background-color: blue;
-      }
-
-      li {
-        list-style-type: circle;
-      }
-
-      nav li {
-        list-style-type: none;
-        border: 1px black solid;
-        background-color: hsla(0, 100%, 50%, .2);
-        padding: 10px;
-        margin: 4px 0;
-      }
-
-      .vl {
-        border-left: 3px solid rgb(111, 3, 253);
-        height: 1170px;
-        position: absolute;
-        left: 30%;
-        margin-left: -3px;
-        top: 5;
-      }
-
-      h4 {
-        font-size: 15px;
-        color: rgb(4, 182, 252);
-      }
-
-      .sender-column {
-        text-align: right;
-      }
-    </style>
-  </head>
+    section h2+p {
+      text-indent: 0px;
+    }
 
 
-  <body>
+
+    p a:link {
+      color: red;
+      outline: none;
+      background: url(http://mdn.github.io/learning-area/css/styling-text/typesetting-a-homepage-start/external-link-52.png);
+      background-repeat: no-repeat;
+      background-size: 1.0em 1.0em;
+
+      padding-left: 20px;
+
+
+    }
+
+    a:visited {
+      color: red;
+    }
+
+    a:focus {}
+
+    a:hover {
+      background-color: #a66;
+      text-decoration: none;
+    }
+
+    a:active {
+      color: #a66;
+      background-color: blue;
+    }
+
+    li {
+      list-style-type: circle;
+    }
+
+    nav li {
+      list-style-type: none;
+      border: 1px black solid;
+      background-color: hsla(0, 100%, 50%, .2);
+      padding: 10px;
+      margin: 4px 0;
+    }
+
+    .vl {
+      border-left: 3px solid rgb(111, 3, 253);
+      height: 1170px;
+      position: absolute;
+      left: 50%;
+      margin-left: -3px;
+      top: 5;
+    }
+
+    h4 {
+      font-size: 15px;
+      color: rgb(4, 182, 252);
+    }
+
+    h5 {
+      color: rgb(4, 182, 252);
+    }
+
+    .sender-column {
+      text-align: right;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class='wrapper'>
     <header>
-      <h1><img src="{% static '/images/img9.JPG' %}" width="950" height="200">
+      <h1><img src="C:\Users\Admin\Desktop\OLD DATA\jamatulmuslimeen\jamatulmsl\static\images\img9.JPG" width="950" height="200">
     </header>
-    <div class="vl"><br>;
-      <p style="font-size: 1.5rem; position:relative; left:20px;"><b>Ref : __________
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date : <u>{{user_profile.Date}}</u>
-      </p></b>
+  </div>
+  <hr class="hritem" ><br>
 
-      <p style="font-size: 1.5rem; position:relative; left:20px;"><strong>To,</strong><br>
-        <u></u>{{user_profile.Address}}</u>
-      </p>
-      <br>
-      <h2 style="color:rgb(1, 10, 53);">Sub :- Permission for Burial</h2>
+    <b style="font-size: 1.5rem; position:relative; left:20px;">Ref : ___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      Date : {{user_profile.Date}}
+        
+    </b>
 
-      <p style="font-size: 1.7rem; position:relative; left:20px;">Dear Sir,</p>
+    <p style="font-size: 1.5rem; position:relative; left:20px;"><strong>To,</strong><br>
+      <u></u>{{user_profile.Address}}</u>
+    </p>
 
-      <p style="font-size: 1.7rem; position:relative; left:20px;">With above reference the Qabrastan Committee hereby
-        grants the permission to Bury the
-        deceased&nbsp;&nbsp;<u><b>{{user_profile.Applicant_name}}</b></u>&nbsp;&nbsp;within
-        Sunni Muslim Qabrastan with the specific condition and reservation that in no circumstance the Qabr / Grave
-        shall be allowed to be made permanent in the form of any construction whatsoever and that the Qabrastan
-        Committee shall always be entitled to remove the structure if any over the Qabr/Grave.<br>
-        It is hereby made clear that this permission is being issued subject to the information supplied and undertaking
-        and declaration filed b you, in accordance with and as per the Form referred to above.<br>
-        The Oabrastan Committee has reserved all the rights with regard to Oabr / Grave that may be introduced as per
-        this permission, for managing the entire abrastan as per the policies that may be formed and executed from time
-        and that you and /or other legal heirs of the deceased shall not have any right to raise any objection regarding
-        the decision that may be taken by the Qabrastan Committee generally and Jamiatul Muslemeen particularly in the
-        matter concerning the grant of present permission and modification thereof regarding the Qabr/Grave.<br>
-        This permission is without prejudice to the rights of qabrastan
-        Committee and Jamiatual Muslemeen for formulation and execution ofpolicies for General Management of abrastan
-        and that this permission shallin no circumstances to be the grant of any right and /or
-        permission for introduction of any structure, permanent or otherwise over the Qabr/Grave.<br>
-        You shall be liable to be prosecuted by Jamiataul Muslemeen Mumbra in the event, any of the information
-        supplied, proving false.<br><br>
-        Yours faithfully,<br><br><br><br>
-        President</p>
-      <br>
-      <p style="font-size: 2rem; position:relative; left:300px;"><b>WE CARE FOR THE PEOPLE</p></b>
-    </div>
+    <h2 style="color:rgb(1, 10, 53);">Sub :- Permission for Burial</h2>
 
+    <p style="font-size: 1.7rem; position:relative; left:20px;">Dear Sir,</p>
 
-    <p>
-    <h4>HAJI NAYEEM NAZIR KHAN <br>President<br>
-      9820700034 / 9892662222<br><br>
+    <p style="font-size: 13px;;">With above reference the Qabrastan Committee hereby
+      grants the permission to Bury the
+      deceased<br><b>{{user_profile.Applicant_name}}</b><br>within
+      Sunni Muslim Qabrastan with the specific condition and reservation 
+      that in no<br> circumstance the Qabr / Grave
+      shall be allowed to be made permanent in the form of any construction <br>
+      whatsoever and that the Qabrastan Committee shall always be entitled to remove the 
+      structure if any over the<br> Qabr/Grave.<br>
+      It is hereby made clear that this permission is being issued subject to the information supplied and undertaking
+      <br>and declaration filed b you, in accordance with and as per the Form referred to above.<br>
+      The Oabrastan Committee has reserved all the rights with regard to Oabr / Grave that may be introduced as per
+      this permission, for managing the entire abrastan as per the policies that may be formed and executed from time<br>
+      and that you and /or other legal heirs of the deceased shall not have any right to raise any objection regarding<br>
+      the decision that may be taken by the Qabrastan Committee generally and Jamiatul Muslemeen particularly<br> in the
+      matter concerning the grant of present permission and modification thereof regarding the Qabr/Grave.<br>
+      This permission is without prejudice to the rights of qabrastan
+      Committee and Jamiatual Muslemeen for<br> formulation and execution ofpolicies for General Management of abrastan
+      and that this permission shallin <br>no circumstances to be the grant of any right and /or
+      permission for introduction of any structure,<br> permanent or otherwise over the Qabr/Grave.<br>
+      You shall be liable to be prosecuted by Jamiataul Muslemeen Mumbra in the event, any of the information<br>
+      supplied, proving false.</p>
+      <b><p style="text-align: right; font-size: 12px;"> Your faithfully, <br><br><br><br> President</p></b>
+      <hr class="hritem" >
+      HAJI NAYEEM NAZIR KHAN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YASIN AYYUB QURESHI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SAYED SHAMIM AHSAN  <br>President&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gen. Sec.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspChairman Legal Advisor<br>
+      9820700034 / 9892662222 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820193392<br><br>
       HAJI ABBA MOHD. N. MEMON <br>V.President<br>
-      9821216651<br><br>
-      <!-- MUNAF A. SIDDIQUI <br>Treasurer<br>
-          9820033301<br><br> -->
-      YASIN AYYUB QURESHI <br>Gen. Sec.<br>
-      9820193392<br><br>
-      SAYED SHAMIM AHSAN <br>Chairman Legal Advisor<br>
-      9820168581<br><br>
-      FAHAD FAROOQUE KAZI<br>
-      V. Chairman Kabrastan Comm.<br>
-      9167557778<br><br>
-      SAYYED WASIM ALI NAZIR ALI
-      <br>Chairman Muslim Wel. Committee<br>
-      9820499944<br><br>
-      IMRAN AB. RASHID QURESHI <br>
-      V. Chairman Mumisl Wel. Comm.<br>
-      9664555552<br><br>
-      HAJI RIYAZUDDIN .A QADIRI<br>
-      Chairman URS Committee<br>
-      9833054949 / 7977866814<br><br>
-      HAJIAFTAB AHMED<br>
-      V. Chairman URS Committee<br>
-      9820152105<br><br>
-      SALIM HASHAM MANSOORI<br>
-      V. Chairman URS Committee<br>
-      9819502015<br><br>
-      SALIM DAWOOD KHAN<br>
-      V. Chairman URS Committee<br>
-      8879212521<br><br>
-      </p>
-    </h4>
+      9821216651<br>
+    
+  </div>
 
-  </body>
-  {% endblock body %}
+  
+
+</body>
+{% endblock body %}
+
 </html>
-
-
-
-
