@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+<html>
+
+<head>
+    <title>UPDATE APPLICANT</title>
+</head>
+<style>
+    h1 {
+        text-align: center;
+        color: rgb(255, 0, 0);
+        font-size: 100px;
+    }
+</style>
+
+<div class="container">
+    <div class="row pt-5 mb-3">
+        <div class="text-center col-md-5"></div>
+        <div class="col-md-12 mt-3 mb-3 ml-2 mr-2 my-auto border border-dark border-2 rounded-3">
+            <h3 class="text-center mb-3 mt-3"><b>SELECT DATE RANGE FOR EXPORT DATA</h3></b>
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <form action="/exporttoexcel" method="post">{% csrf_token %}
+
+                <label for="startDate" class="form-label">Start Date*</label>
+                <div class="form-group">
+                    <input type="Date" class="form-control mb-3" id="startDate" name="startDate"
+                        placeholder="Enter Date" required>
+                </div>
+                <label for="endDate" class="form-label">End Date*</label>
+                <div class="form-group">
+                    <input type="Date" class="form-control mb-3" id="endDate" name="endDate" placeholder="Enter Date" required>
+                </div>
+                <button class="btn btn-dark d-grid mx-auto col-6 mt-4 mb-3" name="button" type="submit">Download CSV</button>
+            </form>
+        </div>
+    </div>
+</div>
+        
+</html>
+{% endblock body %}

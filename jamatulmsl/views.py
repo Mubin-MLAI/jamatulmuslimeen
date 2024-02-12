@@ -1,3 +1,6 @@
+from asyncio import log
+from collections import OrderedDict
+import datetime
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -10,11 +13,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.core.exceptions import ObjectDoesNotExist
-import reportlab
-
-
-
+from io import BytesIO
+from django.http import HttpResponse
 from django.template.loader import get_template
+from xhtml2pdf import pisa
+import csv
+
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html  = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("utf-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
 
 # from django.template import loader
 #  template = loader.get_template('template.html')
@@ -202,20 +215,7 @@ class listResume(APIView):
         return render(request, "listResume.html", status=status.HTTP_202_ACCEPTED)
 
 
-from io import BytesIO
-from django.http import HttpResponse
-from django.template.loader import get_template
 
-from xhtml2pdf import pisa
-
-def render_to_pdf(template_src, context_dict={}):
-    template = get_template(template_src)
-    html  = template.render(context_dict)
-    result = BytesIO()
-    pdf = pisa.pisaDocument(BytesIO(html.encode("utf-8")), result)
-    if not pdf.err:
-        return HttpResponse(result.getvalue(), content_type='application/pdf')
-    return None
 
 
 
@@ -257,12 +257,77 @@ class viewResume(APIView):
 
 
 class updateapplicant(APIView):
-
     def get(self, request):
 
         return render(request, 'editapplicant.html')
     
+class exportdata(APIView):
+    def get(self, request):
+        return render(request, 'export.html')
+
+class exporttoexcel(APIView):
+    
+    def post(self,request):
+        st_dt = request.POST['startDate']
+        ed_dt = request.POST['endDate']
+        user_profile = metainformation.objects.all()  
+        # if  'button' in request.POST: 
+        output_json_list = []
+        output_json_n = {}
+        count = 0
+        for data in user_profile:
+            if data.Date is not None:
+                dt = str(data.Date)
+            else:
+                continue
+
+            if st_dt <= dt <= ed_dt:
+
+                keyList = ['USERID','Applicant_name','Deceased_name','Deceased_age','Gender','Contact_number','Address',
+                        'Deceased_address','Date','Date_of_death','time_of_death','Cause_of_death','Relationship','Form_number',
+                        'Amount','Aadhar_card','Death_certificate','Other_file' ]
+
+                valueList = [
+                                str(data.USERID),str(data.Applicant_name),str(data.Deceased_name),str(data.Deceased_age),str(data.Gender),
+                                str(data.Contact_number),str(data.Address),str(data.Deceased_address),str(data.Date),str(data.Date_of_death),str(data.time_of_death),
+                                str(data.Cause_of_death),str(data.Relationship),str(data.Form_number),str(data.Amount),str(data.Aadhar_card),
+                                str(data.Death_certificate),str(data.Other_file)
+                            ]
+
+                output_json_n = OrderedDict(zip(keyList, valueList))
+                output_json_list.append(output_json_n)
+                count =  count + 1
 
 
+        ## To Download In Browser CSV File   
 
-        
+        filenamedt = datetime.datetime.now()
+        now_without_microseconds = filenamedt.replace(microsecond=0)
+        file_name = datetime.datetime.strftime(now_without_microseconds, '%Y-%m-%d %H %M %S')
+        newfilename = str(file_name) + '.csv'
+        fname = f"{newfilename}"
+        messages.success(request, 'Data Export Successful! '),
+        response = HttpResponse( content_type='text/csv',headers={'Content-Disposition': f'attachment; filename="{fname}"'})
+        writer = csv.DictWriter(response, fieldnames=output_json_list[0].keys())
+        writer.writeheader()
+        for row in output_json_list:
+            writer.writerow(row) 
+        print("Data fetched successfully")
+        messages.success(request, 'Data Export Successful!')
+        return response
+
+                ## To Download In System CSV File           
+
+                # filenamedt = datetime.datetime.now()
+                # now_without_microseconds = filenamedt.replace(microsecond=0)
+                # file_name = datetime.datetime.strftime(now_without_microseconds, '%Y-%m-%d %H %M %S')
+                # newfilename = str(file_name) + '.csv'
+                # with open(str(newfilename), mode='w', newline='') as file:
+                #     writer = csv.DictWriter(file, fieldnames=output_json_list[0].keys())
+                #     writer.writeheader()
+                #     for row in output_json_list:
+                #         writer.writerow(row)
+                # print(count)
+                # print("Data fetched successfully")
+                # messages.success(request, 'Data Export Successful Filename ' + str(newfilename))            
+                # return Response(output_json_list, status=status.HTTP_200_OK)
