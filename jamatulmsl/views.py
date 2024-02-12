@@ -312,7 +312,6 @@ class exporttoexcel(APIView):
         writer.writeheader()
         for row in output_json_list:
             writer.writerow(row) 
-        print("Data fetched successfully")
         messages.success(request, 'Data Export Successful!')
         return response
 
@@ -331,3 +330,16 @@ class exporttoexcel(APIView):
                 # print("Data fetched successfully")
                 # messages.success(request, 'Data Export Successful Filename ' + str(newfilename))            
                 # return Response(output_json_list, status=status.HTTP_200_OK)
+    
+
+class updatedetails(APIView):
+    def post(self, request):
+
+        phoneno =  request.data.get('phoneno')
+
+        data  =   metainformation.objects.filter(Contact_number=phoneno)
+        serializedata =  metainfoserializer(data, many=True)
+        print(serializedata.data)
+        
+
+        return Response('Success')

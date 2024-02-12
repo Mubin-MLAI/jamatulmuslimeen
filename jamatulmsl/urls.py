@@ -14,4 +14,5 @@ urlpatterns = [
     path('updateapplicant', views.updateapplicant.as_view(), name='updateapplicant'),
     path('exportdata', views.exportdata.as_view(), name='exportdata'),
     path('exporttoexcel', views.exporttoexcel.as_view(), name='exporttoexcel'),
+    path('updatedetails', views.updatedetails.as_view(), name='updatedetails')
 ] 

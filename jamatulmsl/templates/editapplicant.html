@@ -1,18 +1,141 @@
 {% extends 'base.html' %}
+
+<!-- changing title of page -->
+
+{% block title %}
+Registration Form
+{% endblock title %}
+
 {% block body %}
-<html>
-    <head>
-        <title>UPDATE APPLICANT</title>
-        <style>
-            h1{
-                text-align: center;
-                color: rgb(255, 0, 0);
-                font-size: 100px;
-            }
-        </style>
-        <body>
-            <h1> UNDER DEVELOPMENT </h1>
-        </body>
-    </head>
-</html>
+
+<!-- creating container for adding details -->
+
+<div class="container">
+    <div class="row pt-2 mb-3">
+        <div class="text-center col-md-6"></div>
+        <div class="col-md-12 mt-3 mb-3 ml-2 mr-2 my-auto border border-dark border-2 rounded-3">
+            <h3 class="text-center mb-3 mt-3">UPDATE APPLICANT DETAILS</h3>
+
+{% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+          {{message}}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+            <!-- creating form for adding resume details -->
+            
+            <form action="/addResume" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <label for="userid" class="form-label">User ID*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="USERID" name="USERID" value="{{user.username}}"
+                        placeholder="Enter  user id" required readonly>
+                </div>
+                <label for="fno" class="form-label">Form Number*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Form_number" name="Form_number" value="{{context}}" 
+                        placeholder="Enter Form Number"  required readonly>
+                </div>
+                <label for="aname" class="form-label">Applicant Name*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Applicant_name" name="Applicant_name"
+                        placeholder="Enter Applicant Name" required>
+                </div>
+                <label for="dname" class="form-label">Deceased Name*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Deceased_name" name="Deceased_name"
+                        placeholder="Enter Deceased Name" required>
+                </div>
+                <label for="dage" class="form-label">Deceased Age*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Deceased_age" name="Deceased_age"
+                        placeholder="Enter Deceased Age" required>
+                </div>
+                <label for="gen" class="form-label">Gender*</label>
+                <div class="form-group">
+                    <select name="Gender" id="Gender" class="form-control mb-3">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    </select>
+                </div>
+                <label for="cno" class="form-label">Phone Number*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Contact_number" onkeypress="Contact_number1()" name="Contact_number" maxlength="10"
+                     placeholder="Enter Phone Number" required>
+                </div>
+                
+                <label for="Address" class="form-label">Address*</label>
+                <div class="form-group">
+                    <textarea id="Address" name="Address" cols="90" rows="3" class="form-control"
+                        placeholder="Enter Address" required></textarea>
+                </div>
+                <label for="daddress" class="form-label">Deceased Address*</label>
+                <div class="form-group">
+                    <textarea id="Deceased_address" name="Deceased_address" cols="90" rows="3" class="form-control"
+                        placeholder="Enter Deceased Address" required></textarea>
+                </div>
+                <label for="rel" class="form-label">Relationship*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Relationship" name="Relationship"
+                        placeholder="Enter Relationship" required>
+                </div>
+                <label for="Cdeath" class="form-label">Cause Of Death*</label>
+                <div class="form-group">
+                    <input type="text" class="form-control mb-3" id="Cause_of_death" name="Cause_of_death"
+                        placeholder="Enter Cause Of Death" required>
+                </div>
+                <label for="Date" class="form-label">Date</label>
+                <div class="form-group">
+                    <input type="Date" class="form-control mb-3" id="Date" name="Date"
+                        placeholder="Enter Date">
+                </div>
+                <label for="dDate" class="form-label">Date Of Death</label>
+                <div class="form-group">
+                    <input type="Date" class="form-control mb-3" id="Date_of_death" name="Date_of_death"
+                        placeholder="Enter Date Of Death">
+                </div>
+                <label for="tim" class="form-label">Time Of Death</label>
+                <div class="form-group">
+                    <input type="Time" class="form-control mb-3" id="time_of_death" name="time_of_death"
+                        placeholder="Enter Time Of Death">
+                </div>
+                
+                <label for="acard" class="form-label">Upload Aadhar card</label>
+                <input type="file" class="form-control mb-3" id="id_Aadhar_card" name="Aadhar_card">
+
+                <label for="dcard" class="form-label">Upload Death Certificate</label>
+                <input type="file" class="form-control mb-3" id="id_Death_certificate" name="Death_certificate">
+
+                <label for="ocard" class="form-label">Upload Other File</label>
+                <input type="file" class="form-control mb-3" id="id_Other_file" name="Other_file">
+                
+                <label for="Amount" class="form-label">Amount*</label>
+                <div class="form-group">
+                    <input type="number" class="form-control mb-3" id="Amount" name="Amount"
+                        placeholder="Enter Amount" required>
+                </div>
+                <button class="btn btn-dark d-grid mx-auto col-6 mt-4 mb-3" type="submit">SUBMIT</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<script>  
+    function Contact_number1(){          
+     $('#Contact_number').keypress(function(e) {
+         var a = [];
+         var k = e.which;
+
+         for (i = 48; i < 58; i++)
+             a.push(i);
+
+         if (!(a.indexOf(k)>=0))
+             e.preventDefault();
+     });
+ }
+</script>
 {% endblock body %}
