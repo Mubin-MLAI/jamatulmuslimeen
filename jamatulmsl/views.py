@@ -172,13 +172,6 @@ class savepersondetails(APIView):
             }
             
             return render(request, 'registrationform.html', {'context': condata['ids'] })
-            # Hi Hello
-            # return Response(template_name='registrationform.html')
-
-            # return Response(data={'Data': serialsdata.data, 
-            #                     'message': 'Details Saved Successfull', 
-            #                     'status': status.HTTP_201_CREATED,}, template_name='registrationform.html')
-        
         messages.success(request, "Invalid Entry")
         return Response(serializer.error_messages,status=400, template_name='registrationform.html')
 
@@ -221,8 +214,6 @@ class listResume(APIView):
 
 class viewResume(APIView):
 
-
-
     def post(self, request):
         try:
             contact = request.POST['Contact_number']
@@ -236,7 +227,7 @@ class viewResume(APIView):
                 pdf = render_to_pdf('burial.html' ,context)
                 if pdf:
                     response = HttpResponse(pdf, content_type='application/pdf')
-                    filename = "Invoice_%s.pdf" %("12341231")
+                    filename = "Form C_%s.pdf" %("contact")
                     content = "inline; filename='%s'" %(filename)
                     download = request.GET.get("download")
                     if download:
@@ -250,16 +241,23 @@ class viewResume(APIView):
             if  'button2' in request.POST:
                 return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
             
+            user_data = metainformation.objects.filter(Contact_number=contact)
+            serial = metainfoserializer(user_data, many=True)
+            print(serial.data)
+            for i in serial.data:
+                datea = i.get('Date')
+                dod = i.get('Date_of_death')
+                tod = i.get('time_of_death')
 
+                if  'button3' in request.POST:
+                    return render(request, 'editapplicant.html', {'user_datas':user_data, 'dates': datea, 'dod':dod,'tod':tod}, status=status.HTTP_202_ACCEPTED)
+                if 'button4' in request.POST:
+                    user_data.delete()
+                    messages.success(request, 'Deleted Successful!')
+                    return render(request, 'listResume.html', status=status.HTTP_202_ACCEPTED)
         except ObjectDoesNotExist:
             messages.error(request, 'Invalid Number OR Number Does Not Exist')
             return redirect('listResume')
-
-
-class updateapplicant(APIView):
-    def get(self, request):
-
-        return render(request, 'editapplicant.html')
     
 class exportdata(APIView):
     def get(self, request):
@@ -333,13 +331,18 @@ class exporttoexcel(APIView):
     
 
 class updatedetails(APIView):
-    def post(self, request):
 
-        phoneno =  request.data.get('phoneno')
+    def post(self, request, phoneno):
 
-        data  =   metainformation.objects.filter(Contact_number=phoneno)
-        serializedata =  metainfoserializer(data, many=True)
-        print(serializedata.data)
+        try:
+            data  =   metainformation.objects.get(Contact_number=phoneno)
+        except metainformation.DoesNotExist:
+            return Response({'error':'Data Not Found'}, status=status.HTTP_404_NOT_FOUND)
         
-
-        return Response('Success')
+        serializedata =  metainfoserializer(data, data=request.data, partial=True)
+        if serializedata.is_valid():
+            serializedata.save()
+            messages.success(request, 'Update Successful!' )
+            # return Response(serializedata.data)
+            return render(request, 'editapplicant.html', status=status.HTTP_200_OK)
+        return Response(serializedata.errors, status=status.HTTP_400_BAD_REQUEST)

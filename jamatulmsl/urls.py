@@ -11,8 +11,7 @@ urlpatterns = [
     path('logout', views.logoutPage, name='logoutPage'),
     path('listResume', views.listResume.as_view(), name='listResume'),
     path('viewResume', views.viewResume.as_view(), name='viewResume'),
-    path('updateapplicant', views.updateapplicant.as_view(), name='updateapplicant'),
     path('exportdata', views.exportdata.as_view(), name='exportdata'),
     path('exporttoexcel', views.exporttoexcel.as_view(), name='exporttoexcel'),
-    path('updatedetails', views.updatedetails.as_view(), name='updatedetails')
+    path('updatedetails/<int:phoneno>/', views.updatedetails.as_view(), name='updatedetails')
 ] 

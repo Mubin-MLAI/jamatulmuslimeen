@@ -9,14 +9,24 @@ Registration Form
 {% block body %}
 
 <!-- creating container for adding details -->
+<style>
 
+    
+    .container {
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+</style>
 <div class="container">
     <div class="row pt-2 mb-3">
         <div class="text-center col-md-6"></div>
         <div class="col-md-12 mt-3 mb-3 ml-2 mr-2 my-auto border border-dark border-2 rounded-3">
-            <h3 class="text-center mb-3 mt-3">UPDATE APPLICANT DETAILS</h3>
+            <h3 class="text-center mb-3 mt-3"></h3>
 
-{% for message in messages %}
+        {% for message in messages %}
         <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
           {{message}}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -24,32 +34,31 @@ Registration Form
         {% endfor %}
 
             <!-- creating form for adding resume details -->
-            
-            <form action="/addResume" method="post" enctype="multipart/form-data">{% csrf_token %}
+            {% for userdata in user_datas %}
+            <form action="/updatedetails/{{userdata.Contact_number}}/" method="post" enctype="multipart/form-data">{% csrf_token %}
+                
                 <label for="userid" class="form-label">User ID*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="USERID" name="USERID" value="{{user.username}}"
-                        placeholder="Enter  user id" required readonly>
+                    <input type="text" class="form-control mb-3" id="USERID" name="USERID" value="{{userdata.USERID}}" readonly>
                 </div>
                 <label for="fno" class="form-label">Form Number*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Form_number" name="Form_number" value="{{context}}" 
-                        placeholder="Enter Form Number"  required readonly>
+                    <input type="text" class="form-control mb-3" id="Form_number" name="Form_number" value={{userdata.Form_number}} readonly>
                 </div>
+                
                 <label for="aname" class="form-label">Applicant Name*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Applicant_name" name="Applicant_name"
-                        placeholder="Enter Applicant Name" required>
+                    <input type="text" class="form-control mb-3" id="Applicant_name" name="Applicant_name" value= "{{userdata.Applicant_name}}">
                 </div>
                 <label for="dname" class="form-label">Deceased Name*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Deceased_name" name="Deceased_name"
-                        placeholder="Enter Deceased Name" required>
+                    <input type="text" class="form-control mb-3" id="Deceased_name" name="Deceased_name" value="{{userdata.Deceased_name}}"
+                        placeholder="Enter Deceased Name">
                 </div>
                 <label for="dage" class="form-label">Deceased Age*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Deceased_age" name="Deceased_age"
-                        placeholder="Enter Deceased Age" required>
+                    <input type="text" class="form-control mb-3" id="Deceased_age" name="Deceased_age" value="{{userdata.Deceased_age}}"
+                        placeholder="Enter Deceased Age">
                 </div>
                 <label for="gen" class="form-label">Gender*</label>
                 <div class="form-group">
@@ -60,43 +69,43 @@ Registration Form
                 </div>
                 <label for="cno" class="form-label">Phone Number*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Contact_number" onkeypress="Contact_number1()" name="Contact_number" maxlength="10"
-                     placeholder="Enter Phone Number" required>
+                    <input type="text" class="form-control mb-3" id="Contact_number" onkeypress="Contact_number1()" name="Contact_number" maxlength="10" value="{{userdata.Contact_number}}"
+                     placeholder="Enter Phone Number"  readonly>
                 </div>
                 
                 <label for="Address" class="form-label">Address*</label>
                 <div class="form-group">
-                    <textarea id="Address" name="Address" cols="90" rows="3" class="form-control"
-                        placeholder="Enter Address" required></textarea>
+                    <input type="text" id="Address" name="Address" height="90" width="3" class="form-control mb-3" value="{{userdata.Address}}"
+                        placeholder="Enter Address" >
                 </div>
                 <label for="daddress" class="form-label">Deceased Address*</label>
                 <div class="form-group">
-                    <textarea id="Deceased_address" name="Deceased_address" cols="90" rows="3" class="form-control"
-                        placeholder="Enter Deceased Address" required></textarea>
+                    <input type="text" id="Deceased_address" name="Deceased_address" cols="90" rows="3" class="form-control" value="{{userdata.Deceased_address}}"
+                        placeholder="Enter Deceased Address">
                 </div>
                 <label for="rel" class="form-label">Relationship*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Relationship" name="Relationship"
-                        placeholder="Enter Relationship" required>
+                    <input type="text" class="form-control mb-3" id="Relationship" name="Relationship" value="{{userdata.Relationship}}"
+                        placeholder="Enter Relationship">
                 </div>
                 <label for="Cdeath" class="form-label">Cause Of Death*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Cause_of_death" name="Cause_of_death"
-                        placeholder="Enter Cause Of Death" required>
+                    <input type="text" class="form-control mb-3" id="Cause_of_death" name="Cause_of_death" value="{{userdata.Cause_of_death}}"
+                        placeholder="Enter Cause Of Death">
                 </div>
                 <label for="Date" class="form-label">Date</label>
                 <div class="form-group">
-                    <input type="Date" class="form-control mb-3" id="Date" name="Date"
+                    <input type="text" class="form-control mb-3" id="Date" name="Date" value="{{dates}}"
                         placeholder="Enter Date">
                 </div>
                 <label for="dDate" class="form-label">Date Of Death</label>
                 <div class="form-group">
-                    <input type="Date" class="form-control mb-3" id="Date_of_death" name="Date_of_death"
+                    <input type="text" class="form-control mb-3" id="Date_of_death" name="Date_of_death" value="{{dod}}"
                         placeholder="Enter Date Of Death">
                 </div>
                 <label for="tim" class="form-label">Time Of Death</label>
                 <div class="form-group">
-                    <input type="Time" class="form-control mb-3" id="time_of_death" name="time_of_death"
+                    <input type="text" class="form-control mb-3" id="time_of_death" name="time_of_death" value="{{tod}}"
                         placeholder="Enter Time Of Death">
                 </div>
                 
@@ -111,11 +120,13 @@ Registration Form
                 
                 <label for="Amount" class="form-label">Amount*</label>
                 <div class="form-group">
-                    <input type="number" class="form-control mb-3" id="Amount" name="Amount"
-                        placeholder="Enter Amount" required>
+                    <input type="number" class="form-control mb-3" id="Amount" name="Amount" value="{{userdata.Amount}}"
+                        placeholder="Enter Amount">
                 </div>
-                <button class="btn btn-dark d-grid mx-auto col-6 mt-4 mb-3" type="submit">SUBMIT</button>
+                <button class="btn btn-dark d-grid mx-auto col-6 mt-4 mb-3 " type="submit">Update</button>
+            
             </form>
+            {% endfor %}
             
         </div>
     </div>
@@ -137,5 +148,8 @@ Registration Form
              e.preventDefault();
      });
  }
+
+ 
+
 </script>
 {% endblock body %}

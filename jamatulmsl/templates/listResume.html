@@ -20,12 +20,12 @@ List Applicant Form
       <div class="row">
         <div class="col-sm-3"> </div>
         <div class="col-sm-6 d-flex justify-content-center">
-          <div class="card" style="width: 20rem;">
+          <!-- <div class="card" style="width: 20rem;"> -->
             <div class="card">
               <!-- <img class="card-img-top" src="{% static '/images/resume-5.jpg' %}" alt="Card image cap"> -->
               <div class="card-body">
                 {% for message in messages %}
-                  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="background-color: #f80707 !important;">
+                  <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="background-color: #4bfa54 !important;">
                     {{message}}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>
@@ -34,6 +34,10 @@ List Applicant Form
                 <div class="form-group">
                   <input type="text" class="form-control mb-3" id="Contact_number" onkeypress="Contact_number1()" name="Contact_number" maxlength="10"
                     placeholder="Enter Phone Number" required>
+                    <div class="text-center">
+                      <input type="submit" name = "button3" class="btn btn-primary" value="Edit"> 
+                      <input type="submit" name = "button4" class="btn btn-danger" value="Delete" onclick="return confirmAction()">
+                    </div>
               </div>
               </div>
               <div class="card-footer text-center">
@@ -41,7 +45,7 @@ List Applicant Form
                 <input type="submit" name = "button2" class="btn btn-success" value="View Letter Head">
               </div>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
         <div class="col-sm-3"> </div>
       </div>
@@ -83,6 +87,11 @@ List Applicant Form
        if (!(a.indexOf(k)>=0))
            e.preventDefault();
    });
+}
+
+function confirmAction() {
+    var confirmed = confirm("Are you sure you want to proceed?");
+    return confirmed; 
 }
 </script>
 
