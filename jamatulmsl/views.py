@@ -122,9 +122,10 @@ class savepersondetails(APIView):
     
     def post(self, request):
 
-        upfiles = request.FILES['Aadhar_card']
-        upfiles1 = request.FILES['Death_certificate']
-        upfiles2 = request.FILES['Other_file']
+        upfiles = request.FILES.get('Aadhar_card', False)
+        upfiles1 = request.FILES.get('Death_certificate', False)
+        upfiles2 = request.FILES.get('Other_file', False)
+
 
         serializer = metainfoserializer(data=request.data)
         if serializer.is_valid():
@@ -238,8 +239,25 @@ class viewResume(APIView):
                 # return HttpResponse(pdf, content_type='application/pdf')
                 
                 # return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+            # html = template.render(context)
+            
             if  'button2' in request.POST:
-                return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+                context1 ={
+                     'user_profile':user_profile
+                }
+                template = get_template('planepdf.html')
+                pdf = render_to_pdf('planepdf.html' ,context1)
+                if pdf:
+                    response = HttpResponse(pdf, content_type='application/pdf')
+                    filename = "LetterHead_%s.pdf" %("contact")
+                    content = "inline; filename='%s'" %(filename)
+                    download = request.GET.get("download")
+                    if download:
+                        content = "attachment; filename='%s'" %(filename)
+                    response['Content-Disposition'] = content
+                    return response
+                return HttpResponse("Not found")
+                # return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
             
             user_data = metainformation.objects.filter(Contact_number=contact)
             serial = metainfoserializer(user_data, many=True)
@@ -304,7 +322,6 @@ class exporttoexcel(APIView):
         file_name = datetime.datetime.strftime(now_without_microseconds, '%Y-%m-%d %H %M %S')
         newfilename = str(file_name) + '.csv'
         fname = f"{newfilename}"
-        messages.success(request, 'Data Export Successful! '),
         response = HttpResponse( content_type='text/csv',headers={'Content-Disposition': f'attachment; filename="{fname}"'})
         writer = csv.DictWriter(response, fieldnames=output_json_list[0].keys())
         writer.writeheader()

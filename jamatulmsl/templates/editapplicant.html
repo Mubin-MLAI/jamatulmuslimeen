@@ -110,13 +110,13 @@ Registration Form
                 </div>
                 
                 <label for="acard" class="form-label">Upload Aadhar card</label>
-                <input type="file" class="form-control mb-3" id="id_Aadhar_card" name="Aadhar_card">
+                <input type="file" class="form-control mb-3" id="id_Aadhar_card" name="Aadhar_card" value="{{userdata.Aadhar_card}}">
 
                 <label for="dcard" class="form-label">Upload Death Certificate</label>
-                <input type="file" class="form-control mb-3" id="id_Death_certificate" name="Death_certificate">
+                <input type="file" class="form-control mb-3" id="id_Death_certificate" name="Death_certificate" value="{{userdata.Death_certificate}}">
 
                 <label for="ocard" class="form-label">Upload Other File</label>
-                <input type="file" class="form-control mb-3" id="id_Other_file" name="Other_file">
+                <input type="file" class="form-control mb-3" id="id_Other_file" name="Other_file" value="{{userdata.Other_file}}">
                 
                 <label for="Amount" class="form-label">Amount*</label>
                 <div class="form-group">

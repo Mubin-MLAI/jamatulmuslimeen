@@ -10,15 +10,13 @@ Registration Form
 
 <!-- creating container for adding details -->
 <style>
-
-    
     .container {
-    width: 100%;
-    padding-right: 30px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
+        width: 100%;
+        padding-right: 30px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 </style>
 <div class="container">
     <div class="row pt-2 mb-3">
@@ -26,15 +24,15 @@ Registration Form
         <div class="col-md-12 mt-3 mb-3 ml-2 mr-2 my-auto border border-dark border-2 rounded-3">
             <h3 class="text-center mb-3 mt-3">FILL APPLICANT DETAILS</h3>
 
-{% for message in messages %}
-        <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
-          {{message}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        {% endfor %}
+            {% for message in messages %}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
 
             <!-- creating form for adding resume details -->
-            
+
             <form action="/addResume" method="post" enctype="multipart/form-data">{% csrf_token %}
                 <label for="userid" class="form-label">User ID*</label>
                 <div class="form-group">
@@ -43,8 +41,8 @@ Registration Form
                 </div>
                 <label for="fno" class="form-label">Form Number*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Form_number" name="Form_number" value="{{context}}" 
-                        placeholder="Enter Form Number"  required readonly>
+                    <input type="text" class="form-control mb-3" id="Form_number" name="Form_number" value="{{context}}"
+                        placeholder="Enter Form Number" required readonly>
                 </div>
                 <label for="aname" class="form-label">Applicant Name*</label>
                 <div class="form-group">
@@ -64,16 +62,16 @@ Registration Form
                 <label for="gen" class="form-label">Gender*</label>
                 <div class="form-group">
                     <select name="Gender" id="Gender" class="form-control mb-3">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                     </select>
                 </div>
                 <label for="cno" class="form-label">Phone Number*</label>
                 <div class="form-group">
-                    <input type="text" class="form-control mb-3" id="Contact_number" onkeypress="Contact_number1()" name="Contact_number" maxlength="10"
-                     placeholder="Enter Phone Number" required>
+                    <input type="text" class="form-control mb-3" id="Contact_number" onkeypress="Contact_number1()"
+                        name="Contact_number" maxlength="10" placeholder="Enter Phone Number" required>
                 </div>
-                
+
                 <label for="Address" class="form-label">Address*</label>
                 <div class="form-group">
                     <textarea id="Address" name="Address" cols="90" rows="3" class="form-control"
@@ -96,8 +94,7 @@ Registration Form
                 </div>
                 <label for="Date" class="form-label">Date</label>
                 <div class="form-group">
-                    <input type="Date" class="form-control mb-3" id="Date" name="Date"
-                        placeholder="Enter Date">
+                    <input type="Date" class="form-control mb-3" id="Date" name="Date" placeholder="Enter Date">
                 </div>
                 <label for="dDate" class="form-label">Date Of Death</label>
                 <div class="form-group">
@@ -109,7 +106,7 @@ Registration Form
                     <input type="Time" class="form-control mb-3" id="time_of_death" name="time_of_death"
                         placeholder="Enter Time Of Death">
                 </div>
-                
+
                 <label for="acard" class="form-label">Upload Aadhar card</label>
                 <input type="file" class="form-control mb-3" id="id_Aadhar_card" name="Aadhar_card">
 
@@ -118,15 +115,15 @@ Registration Form
 
                 <label for="ocard" class="form-label">Upload Other File</label>
                 <input type="file" class="form-control mb-3" id="id_Other_file" name="Other_file">
-                
+
                 <label for="Amount" class="form-label">Amount*</label>
                 <div class="form-group">
-                    <input type="number" class="form-control mb-3" id="Amount" name="Amount"
-                        placeholder="Enter Amount" required>
+                    <input type="number" class="form-control mb-3" id="Amount" name="Amount" placeholder="Enter Amount"
+                        required>
                 </div>
                 <button class="btn btn-dark d-grid mx-auto col-6 mt-4 mb-3" type="submit">SUBMIT</button>
             </form>
-            
+
         </div>
     </div>
 </div>
@@ -134,18 +131,18 @@ Registration Form
 
 
 
-<script>  
-    function Contact_number1(){          
-     $('#Contact_number').keypress(function(e) {
-         var a = [];
-         var k = e.which;
+<script>
+    function Contact_number1() {
+        $('#Contact_number').keypress(function (e) {
+            var a = [];
+            var k = e.which;
 
-         for (i = 48; i < 58; i++)
-             a.push(i);
+            for (i = 48; i < 58; i++)
+                a.push(i);
 
-         if (!(a.indexOf(k)>=0))
-             e.preventDefault();
-     });
- }
+            if (!(a.indexOf(k) >= 0))
+                e.preventDefault();
+        });
+    }
 </script>
 {% endblock body %}
