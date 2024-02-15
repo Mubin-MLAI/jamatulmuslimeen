@@ -242,7 +242,7 @@ class viewResume(APIView):
             # html = template.render(context)
             
             if  'button2' in request.POST:
-                context1 ={
+                context1 = {
                      'user_profile':user_profile
                 }
                 template = get_template('planepdf.html')
@@ -284,51 +284,54 @@ class exportdata(APIView):
 class exporttoexcel(APIView):
     
     def post(self,request):
-        st_dt = request.POST['startDate']
-        ed_dt = request.POST['endDate']
-        user_profile = metainformation.objects.all()  
-        # if  'button' in request.POST: 
-        output_json_list = []
-        output_json_n = {}
-        count = 0
-        for data in user_profile:
-            if data.Date is not None:
-                dt = str(data.Date)
-            else:
-                continue
+        try:
 
-            if st_dt <= dt <= ed_dt:
+            st_dt = request.POST['startDate']
+            ed_dt = request.POST['endDate']
+            user_profile = metainformation.objects.all()  
+            output_json_list = []
+            output_json_n = {}
+            count = 0
+            for data in user_profile:
+                if data.Date is not None:
+                    dt = str(data.Date)
+                else:
+                    continue
 
-                keyList = ['USERID','Applicant_name','Deceased_name','Deceased_age','Gender','Contact_number','Address',
-                        'Deceased_address','Date','Date_of_death','time_of_death','Cause_of_death','Relationship','Form_number',
-                        'Amount','Aadhar_card','Death_certificate','Other_file' ]
+                if st_dt <= dt <= ed_dt:
 
-                valueList = [
-                                str(data.USERID),str(data.Applicant_name),str(data.Deceased_name),str(data.Deceased_age),str(data.Gender),
-                                str(data.Contact_number),str(data.Address),str(data.Deceased_address),str(data.Date),str(data.Date_of_death),str(data.time_of_death),
-                                str(data.Cause_of_death),str(data.Relationship),str(data.Form_number),str(data.Amount),str(data.Aadhar_card),
-                                str(data.Death_certificate),str(data.Other_file)
-                            ]
+                    keyList = ['USERID','Applicant_name','Deceased_name','Deceased_age','Gender','Contact_number','Address',
+                            'Deceased_address','Date','Date_of_death','time_of_death','Cause_of_death','Relationship','Form_number',
+                            'Amount','Aadhar_card','Death_certificate','Other_file' ]
 
-                output_json_n = OrderedDict(zip(keyList, valueList))
-                output_json_list.append(output_json_n)
-                count =  count + 1
+                    valueList = [
+                                    str(data.USERID),str(data.Applicant_name),str(data.Deceased_name),str(data.Deceased_age),str(data.Gender),
+                                    str(data.Contact_number),str(data.Address),str(data.Deceased_address),str(data.Date),str(data.Date_of_death),str(data.time_of_death),
+                                    str(data.Cause_of_death),str(data.Relationship),str(data.Form_number),str(data.Amount),str(data.Aadhar_card),
+                                    str(data.Death_certificate),str(data.Other_file)
+                                ]
 
+                    output_json_n = OrderedDict(zip(keyList, valueList))
+                    output_json_list.append(output_json_n)
+                    count =  count + 1
 
-        ## To Download In Browser CSV File   
+            ## To Download In Browser CSV File   
 
-        filenamedt = datetime.datetime.now()
-        now_without_microseconds = filenamedt.replace(microsecond=0)
-        file_name = datetime.datetime.strftime(now_without_microseconds, '%Y-%m-%d %H %M %S')
-        newfilename = str(file_name) + '.csv'
-        fname = f"{newfilename}"
-        response = HttpResponse( content_type='text/csv',headers={'Content-Disposition': f'attachment; filename="{fname}"'})
-        writer = csv.DictWriter(response, fieldnames=output_json_list[0].keys())
-        writer.writeheader()
-        for row in output_json_list:
-            writer.writerow(row) 
-        messages.success(request, 'Data Export Successful!')
-        return response
+            filenamedt = datetime.datetime.now()
+            now_without_microseconds = filenamedt.replace(microsecond=0)
+            file_name = datetime.datetime.strftime(now_without_microseconds, '%Y-%m-%d %H %M %S')
+            newfilename = str(file_name) + '.csv'
+            fname = f"{newfilename}"
+            response = HttpResponse( content_type='text/csv',headers={'Content-Disposition': f'attachment; filename="{fname}"'})
+            writer = csv.DictWriter(response, fieldnames=output_json_list[0].keys())
+            writer.writeheader()
+            for row in output_json_list:
+                writer.writerow(row) 
+            messages.success(request, 'Data Export Successful!')
+            return response
+        except IndexError:
+            messages.success(request, 'No Data Available in This Range')
+            return render(request,'export.html' ,status=status.HTTP_400_BAD_REQUEST)
 
                 ## To Download In System CSV File           
 
