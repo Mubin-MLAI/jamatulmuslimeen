@@ -4,7 +4,6 @@
 {% block title %}
 
 {% endblock title %}
-{% block body %}
 {% load static %}
 <html>
 
@@ -90,7 +89,11 @@
       color: green;
     }
 
-
+    p,
+    ol,
+    ul {
+      font-size: 1.5em;
+    }
 
     body {
       line-height: 1.5;
@@ -154,92 +157,77 @@
       border-left: 3px solid rgb(111, 3, 253);
       height: 1170px;
       position: absolute;
-      left: 50%;
+      left: 30%;
       margin-left: -3px;
       top: 5;
     }
 
     h4 {
       font-size: 15px;
-      color: rgb(4, 182, 252);
-    }
-
-    h5 {
-      color: rgb(4, 182, 252);
+      color: rgb(4, 62, 252);
     }
 
     .sender-column {
       text-align: right;
     }
+
+    .color-font {
+      color: green;
+    }
   </style>
 </head>
-
+{% block body %}
 
 <body>
-  <div class='wrapper'>
-    <header>
-      <h1><img src="C:\Users\Admin\Desktop\OLD DATA\jamatulmuslimeen\jamatulmsl\static\images\img9.JPG" width="950" height="200">
-    </header>
+  <header>
+    <h1><img src="{% static '/images/img9.JPG' %}" width="950" height="200">
+  </header>
+  <div class="vl"><br>
+    <p style="font-size: 1.5rem; position:relative; left:20px; color:rgb(4, 62, 252);"><b>Ref : <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </u>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Date : <u>{{user_profile.Date}}</u>
+      </p></b>
   </div>
-  <hr class="hritem" ><br>
 
-    <b style="font-size: 1.5rem; position:relative; left:20px;">Ref : ___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      
-      Date : {{user_profile.Date}}
-        
-    </b>
 
-    <!-- <p style="font-size: 1.5rem; position:relative; left:20px;"><strong>To,</strong><br>
-      <u></u>{{user_profile.Address}}</u>
+
+  <p>
+  <h4>
+    <div class="color-font"> HAJI NAYEEM NAZIR KHAN </div>President<br>
+    9820700034 / 9892662222<br><br>
+    HAJI ABBA MOHD. N. MEMON <br>V.President<br>
+    9821216651<br><br>
+    <!-- MUNAF A. SIDDIQUI <br>Treasurer<br>
+          9820033301<br><br> -->
+    YASIN AYYUB QURESHI <br>Gen. Sec.<br>
+    9820193392<br><br>
+    SAYED SHAMIM AHSAN <br>Chairman Legal Advisor<br>
+    9820168581<br><br>
+    FAHAD FAROOQUE KAZI<br>
+    V. Chairman Kabrastan Comm.<br>
+    9167557778<br><br>
+    SAYYED WASIM ALI NAZIR ALI
+    <br>Chairman Muslim Wel. Committee<br>
+    9820499944<br><br>
+    IMRAN AB. RASHID QURESHI <br>
+    V. Chairman Mumisl Wel. Comm.<br>
+    9664555552<br><br>
+    HAJI RIYAZUDDIN .A QADIRI<br>
+    Chairman URS Committee<br>
+    9833054949 / 7977866814<br><br>
+    SALIM HASHAM MANSOORI<br>
+    V. Chairman URS Committee<br>
+    9819502015<br><br>
+    SALIM DAWOOD KHAN<br>
+    V. Chairman URS Committee<br>
+    8879212521<br><br>
     </p>
+  </h4>
+  <br><br><br>
+  <p style="font-size: 30px; position:relative; left:500px; color: green;"><u><b>WE CARE FOR THE PEOPLE</u></p></b>
 
-    <h2 style="color:rgb(1, 10, 53);">Sub :- Permission for Burial</h2>
-
-    <p style="font-size: 1.7rem; position:relative; left:20px;">Dear Sir,</p> -->
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-    
-      <!-- <b><p style="text-align: right; font-size: 12px;"> Your faithfully, <br><br><br><br> President</p></b> -->
-      
-      <hr class="hritem" >
-      <p style=" font-size: 8.5px; color: rgb(1, 10, 53);">
-      <b style="color: green; font-size: 8.5px;">NAYEEM NAZIR KHAN </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YASIN AYYUB QURESHI&nbsp;&nbsp;&nbsp;SAYED SHAMIM AHSAN&nbsp;&nbsp;&nbsp;&nbsp;SALIM DAWOOD KHAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;IMRAN AB. RASHID QURESHI
-
-      <br>President&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gen. Sec.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chairman Legal Advisor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chairman Fund Collection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V.Chairman Muslim Wel.Comm.
-      <br>
-      9820700034 / 9892662222 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820193392&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820168581
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8879212521
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9664555552
-
-      <br><br>
-      HAJI ABBA MOHD. N. MEMON&nbsp;&nbsp;&nbsp;MUNAF A. SIDDIQUI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAHAD FAROOQUE KAZI &nbsp;&nbsp;&nbsp;&nbsp;
-      SAYYED WASIM ALI NAZIR ALI&nbsp;&nbsp;&nbsp;HAJI RIYAZUDDIN A. QADIRI
-
-      <br>V.President&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Treasurer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chairman Kabrastan Comm.&nbsp;Chairman Muslim Wel.Committee&nbsp;&nbsp;Chairman URS Committee
-
-      <br>
-      9821216651 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820033301&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9167557778&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820499944&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9833054949 / 7977866814
-
-
-      <br></p>
-    
-  </div>
-
-  
 
 </body>
 {% endblock body %}

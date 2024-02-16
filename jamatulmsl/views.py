@@ -225,57 +225,73 @@ class viewResume(APIView):
                      'user_profile':user_profile
                 }
                 html = template.render(context)
-                pdf = render_to_pdf('burial.html' ,context)
-                if pdf:
-                    response = HttpResponse(pdf, content_type='application/pdf')
-                    filename = "Form C_%s.pdf" %("contact")
-                    content = "inline; filename='%s'" %(filename)
-                    download = request.GET.get("download")
-                    if download:
-                        content = "attachment; filename='%s'" %(filename)
-                    response['Content-Disposition'] = content
-                    return response
-                return HttpResponse("Not found")
-                # return HttpResponse(pdf, content_type='application/pdf')
-                
-                # return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
-            # html = template.render(context)
-            
+                # return render_to_pdf("burial.html", context)
+                return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
             if  'button2' in request.POST:
-                context1 = {
-                     'user_profile':user_profile
-                }
-                template = get_template('planepdf.html')
-                pdf = render_to_pdf('planepdf.html' ,context1)
-                if pdf:
-                    response = HttpResponse(pdf, content_type='application/pdf')
-                    filename = "LetterHead_%s.pdf" %("contact")
-                    content = "inline; filename='%s'" %(filename)
-                    download = request.GET.get("download")
-                    if download:
-                        content = "attachment; filename='%s'" %(filename)
-                    response['Content-Disposition'] = content
-                    return response
-                return HttpResponse("Not found")
-                # return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
-            
-            user_data = metainformation.objects.filter(Contact_number=contact)
-            serial = metainfoserializer(user_data, many=True)
-            print(serial.data)
-            for i in serial.data:
-                datea = i.get('Date')
-                dod = i.get('Date_of_death')
-                tod = i.get('time_of_death')
-
-                if  'button3' in request.POST:
-                    return render(request, 'editapplicant.html', {'user_datas':user_data, 'dates': datea, 'dod':dod,'tod':tod}, status=status.HTTP_202_ACCEPTED)
-                if 'button4' in request.POST:
-                    user_data.delete()
-                    messages.success(request, 'Deleted Successful!')
-                    return render(request, 'listResume.html', status=status.HTTP_202_ACCEPTED)
+                return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
         except ObjectDoesNotExist:
             messages.error(request, 'Invalid Number OR Number Does Not Exist')
             return redirect('listResume')
+        # try:
+        #     contact = request.POST['Contact_number']
+        #     user_profile = metainformation.objects.get(Contact_number=contact)
+        #     template = get_template('burial.html')
+        #     if  'button1' in request.POST:
+        #         context ={
+        #              'user_profile':user_profile
+        #         }
+        #         html = template.render(context)
+        #         pdf = render_to_pdf('burial.html' ,context)
+        #         if pdf:
+        #             response = HttpResponse(pdf, content_type='application/pdf')
+        #             filename = "Form C_%s.pdf" %("contact")
+        #             content = "inline; filename='%s'" %(filename)
+        #             download = request.GET.get("download")
+        #             if download:
+        #                 content = "attachment; filename='%s'" %(filename)
+        #             response['Content-Disposition'] = content
+        #             return response
+        #         return HttpResponse("Not found")
+        #         # return HttpResponse(pdf, content_type='application/pdf')
+                
+        #         # return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+        #     # html = template.render(context)
+            
+        #     if  'button2' in request.POST:
+        #         context1 = {
+        #              'user_profile':user_profile
+        #         }
+        #         template = get_template('planepdf.html')
+        #         pdf = render_to_pdf('planepdf.html' ,context1)
+        #         if pdf:
+        #             response = HttpResponse(pdf, content_type='application/pdf')
+        #             filename = "LetterHead_%s.pdf" %("contact")
+        #             content = "inline; filename='%s'" %(filename)
+        #             download = request.GET.get("download")
+        #             if download:
+        #                 content = "attachment; filename='%s'" %(filename)
+        #             response['Content-Disposition'] = content
+        #             return response
+        #         return HttpResponse("Not found")
+        #         # return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+            
+        #     user_data = metainformation.objects.filter(Contact_number=contact)
+        #     serial = metainfoserializer(user_data, many=True)
+        #     print(serial.data)
+        #     for i in serial.data:
+        #         datea = i.get('Date')
+        #         dod = i.get('Date_of_death')
+        #         tod = i.get('time_of_death')
+
+        #         if  'button3' in request.POST:
+        #             return render(request, 'editapplicant.html', {'user_datas':user_data, 'dates': datea, 'dod':dod,'tod':tod}, status=status.HTTP_202_ACCEPTED)
+        #         if 'button4' in request.POST:
+        #             user_data.delete()
+        #             messages.success(request, 'Deleted Successful!')
+        #             return render(request, 'listResume.html', status=status.HTTP_202_ACCEPTED)
+        # except ObjectDoesNotExist:
+        #     messages.error(request, 'Invalid Number OR Number Does Not Exist')
+        #     return redirect('listResume')
     
 class exportdata(APIView):
     def get(self, request):

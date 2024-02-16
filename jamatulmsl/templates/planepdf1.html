@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+
+{% block title %}
+
+{% endblock title %}
+{% block body %}
+{% load static %}
+<html>
+
+<head>
+  <title>{% if pdf_title %}{{ pdf_title }}{% else %}Letter Head{% endif %}</title>
+  <meta charset="utf-8">
+  <!-- <title>JAMIAT-UL-MUSLIMEEN</title> -->
+  <style>
+    html {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0 auto;
+      min-width: 1000px;
+      max-width: 1400px;
+    }
+
+    /* Layout */
+
+    section {
+      float: left;
+      width: 50%;
+    }
+
+    aside {
+      float: left;
+      width: 30%;
+    }
+
+    nav {
+      float: left;
+      width: 20%;
+    }
+
+    footer {
+      clear: both;
+    }
+
+    header,
+    section,
+    aside,
+    nav,
+    footer {
+      padding: 10px;
+    }
+
+    /* header and footer */
+
+    header {
+      border-top: 5px solid rgb(253, 252, 252);
+      border-bottom: 3px solid rgb(111, 3, 253);
+
+    }
+
+    footer {
+      border-top: 5px solid rgb(3, 3, 252);
+      border-bottom: 5px solid rgb(3, 28, 253);
+      text-align: center;
+      color: green;
+      font-size: 1.5em;
+    }
+
+    /* WRITE YOUR CODE BELOW HERE */
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      color: green;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h3 {
+      text-align: center;
+      color: green;
+    }
+
+
+
+    body {
+      line-height: 1.5;
+      letter-spacing: 1px;
+      word-spacing: 2px;
+    }
+
+    h1,
+    h2 {
+      letter-spacing: 3px;
+      text-align: center;
+    }
+
+    section h2+p {
+      text-indent: 0px;
+    }
+
+
+
+    p a:link {
+      color: red;
+      outline: none;
+      background: url(http://mdn.github.io/learning-area/css/styling-text/typesetting-a-homepage-start/external-link-52.png);
+      background-repeat: no-repeat;
+      background-size: 1.0em 1.0em;
+
+      padding-left: 20px;
+
+
+    }
+
+    a:visited {
+      color: red;
+    }
+
+    a:focus {}
+
+    a:hover {
+      background-color: #a66;
+      text-decoration: none;
+    }
+
+    a:active {
+      color: #a66;
+      background-color: blue;
+    }
+
+    li {
+      list-style-type: circle;
+    }
+
+    nav li {
+      list-style-type: none;
+      border: 1px black solid;
+      background-color: hsla(0, 100%, 50%, .2);
+      padding: 10px;
+      margin: 4px 0;
+    }
+
+    .vl {
+      border-left: 3px solid rgb(111, 3, 253);
+      height: 1170px;
+      position: absolute;
+      left: 50%;
+      margin-left: -3px;
+      top: 5;
+    }
+
+    h4 {
+      font-size: 15px;
+      color: rgb(4, 182, 252);
+    }
+
+    h5 {
+      color: rgb(4, 182, 252);
+    }
+
+    .sender-column {
+      text-align: right;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class='wrapper'>
+    <header>
+      <h1><img src="C:\Users\Admin\Desktop\OLD DATA\jamatulmuslimeen\jamatulmsl\static\images\img9.JPG" width="950" height="200">
+    </header>
+  </div>
+  <hr class="hritem" ><br>
+
+    <b style="font-size: 1.5rem; position:relative; left:20px;">Ref : ___________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      
+      Date : {{user_profile.Date}}
+        
+    </b>
+
+    <!-- <p style="font-size: 1.5rem; position:relative; left:20px;"><strong>To,</strong><br>
+      <u></u>{{user_profile.Address}}</u>
+    </p>
+
+    <h2 style="color:rgb(1, 10, 53);">Sub :- Permission for Burial</h2>
+
+    <p style="font-size: 1.7rem; position:relative; left:20px;">Dear Sir,</p> -->
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    
+      <!-- <b><p style="text-align: right; font-size: 12px;"> Your faithfully, <br><br><br><br> President</p></b> -->
+      
+      <hr class="hritem" >
+      <p style=" font-size: 8.5px; color: rgb(1, 10, 53);">
+      <b style="color: green; font-size: 8.5px;">NAYEEM NAZIR KHAN </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YASIN AYYUB QURESHI&nbsp;&nbsp;&nbsp;SAYED SHAMIM AHSAN&nbsp;&nbsp;&nbsp;&nbsp;SALIM DAWOOD KHAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;IMRAN AB. RASHID QURESHI
+
+      <br>President&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gen. Sec.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chairman Legal Advisor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chairman Fund Collection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V.Chairman Muslim Wel.Comm.
+      <br>
+      9820700034 / 9892662222 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820193392&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820168581
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8879212521
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9664555552
+
+      <br><br>
+      HAJI ABBA MOHD. N. MEMON&nbsp;&nbsp;&nbsp;MUNAF A. SIDDIQUI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAHAD FAROOQUE KAZI &nbsp;&nbsp;&nbsp;&nbsp;
+      SAYYED WASIM ALI NAZIR ALI&nbsp;&nbsp;&nbsp;HAJI RIYAZUDDIN A. QADIRI
+
+      <br>V.President&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Treasurer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chairman Kabrastan Comm.&nbsp;Chairman Muslim Wel.Committee&nbsp;&nbsp;Chairman URS Committee
+
+      <br>
+      9821216651 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820033301&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9167557778&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9820499944&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9833054949 / 7977866814
+
+
+      <br></p>
+    
+  </div>
+
+  
+
+</body>
+{% endblock body %}
+
+</html>
