@@ -229,6 +229,15 @@ class viewResume(APIView):
                 return render(request, "burial.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
             if  'button2' in request.POST:
                 return render(request, "planepdf.html", {'user_profile':user_profile}, status=status.HTTP_202_ACCEPTED)
+            if  'button5' in request.POST:
+                print(user_profile.Gender)
+                if user_profile.Gender == 'male':
+                    ini = 'Mr.'
+                    pro = 'He'
+                else:
+                    ini = 'Ms.'
+                    pro = 'She'
+                return render(request, "burialc.html", {'user_profile':user_profile, 'ini': ini, 'pro':pro}, status=status.HTTP_202_ACCEPTED)
         except ObjectDoesNotExist:
             messages.error(request, 'Invalid Number OR Number Does Not Exist')
             return redirect('listResume')

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+
+{% block title %}
+
+{% endblock title %}
+{% load static %}
+<html>
+
+<head>
+    <title>{% if pdf_title %}{{ pdf_title }}{% else %}BURIAL CERTIFICATE{% endif %}</title>
+    <meta charset="utf-8">
+    <!-- <title>JAMIAT-UL-MUSLIMEEN</title> -->
+    <style>
+        html {
+            font-family: sans-serif;
+            font-size: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0 auto;
+            min-width: 1000px;
+            max-width: 1400px;
+        }
+
+        /* Layout */
+
+        section {
+            float: left;
+            width: 50%;
+        }
+
+        aside {
+            float: left;
+            width: 30%;
+        }
+
+        nav {
+            float: left;
+            width: 20%;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        header,
+        section,
+        aside,
+        nav,
+        footer {
+            padding: 10px;
+        }
+
+        /* header and footer */
+
+        header {
+            border-top: 5px solid rgb(253, 252, 252);
+            border-bottom: 3px solid rgb(111, 3, 253);
+
+        }
+
+        footer {
+            border-top: 5px solid rgb(3, 3, 252);
+            border-bottom: 5px solid rgb(3, 28, 253);
+            text-align: center;
+            color: green;
+            font-size: 1.5em;
+        }
+
+        /* WRITE YOUR CODE BELOW HERE */
+
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            color: green;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        h3 {
+            text-align: center;
+            color: green;
+        }
+
+        p,
+        ol,
+        ul {
+            font-size: 1.5em;
+        }
+
+        body {
+            line-height: 1.5;
+            letter-spacing: 1px;
+            word-spacing: 2px;
+        }
+
+        h1,
+        h2 {
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        section h2+p {
+            text-indent: 0px;
+        }
+
+
+
+        p a:link {
+            color: red;
+            outline: none;
+            background: url(http://mdn.github.io/learning-area/css/styling-text/typesetting-a-homepage-start/external-link-52.png);
+            background-repeat: no-repeat;
+            background-size: 1.0em 1.0em;
+
+            padding-left: 20px;
+
+
+        }
+
+        a:visited {
+            color: red;
+        }
+
+        a:focus {}
+
+        a:hover {
+            background-color: #a66;
+            text-decoration: none;
+        }
+
+        a:active {
+            color: #a66;
+            background-color: blue;
+        }
+
+        li {
+            list-style-type: circle;
+        }
+
+        nav li {
+            list-style-type: none;
+            border: 1px black solid;
+            background-color: hsla(0, 100%, 50%, .2);
+            padding: 10px;
+            margin: 4px 0;
+        }
+
+        .vl {
+            border-left: 3px solid rgb(111, 3, 253);
+            height: 1170px;
+            position: absolute;
+            left: 30%;
+            margin-left: -3px;
+            top: 5;
+        }
+
+        h4 {
+            font-size: 15px;
+            color: rgb(4, 62, 252);
+        }
+
+        .sender-column {
+            text-align: right;
+        }
+
+        .color-font {
+            color: green;
+        }
+    </style>
+</head>
+{% block body %}
+
+<body>
+    <header>
+        <h1><img src="{% static '/images/img9.JPG' %}" width="950" height="200">
+    </header>
+    <div class="vl"><br>
+        
+        <p style="font-size: 1.5rem; position:relative; left:20px; color:rgb(4, 62, 252);"><b>Ref :
+                <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </u>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Date : <u>{{user_profile.Date}}</u>
+        </p></b>
+        <br><br><br><br>
+
+        <h1 style="color:rgb(5, 5, 5); position:relative; left:20px; " font-size: 1.5rem;"><u><b>BURIAL
+                    CERTIFICATE</u></b></h1><br>
+
+        <p style="font-size: 1.7rem; position:relative; left:20px; color: rgb(1, 10, 53);">This is to certify that
+            {{ini}}<u><b>{{user_profile.Applicant_name}}</b></u><br><br>
+
+            residing at <u><b>{{user_profile.Address}}</u></b><br><br>
+            reported expired on
+            <b><u>{{user_profile.Date_of_death}}&nbsp;&nbsp;{{user_profile.time_of_death}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br></u></b><br>
+            {{pro}} was buried in SUNNI MUSLIM QABRASTAN, Mumbra Dist<br><br> Thane- 400612 at
+            <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> On
+            <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+        </p>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <p style="position:relative; left:20px; color:rgb(4, 62, 252);">
+            OFF.SEC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CHAIRMAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRESIDENT<br><b style="color:  rgb(1, 10, 53);">JAMIAT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QAB. COMMITTEE
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HAJI NAYEEM NAZIR KHAN<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                JAMIAT-UL-MUSLIMEEN, MUMBRA</b>
+            </p>
+    </div>
+    
+    
+
+
+
+    <p>
+    <h4>
+        <div class="color-font"> HAJI NAYEEM NAZIR KHAN </div>President<br>
+        9820700034 / 9892662222<br><br>
+        HAJI ABBA MOHD. N. MEMON <br>V.President<br>
+        9821216651<br><br>
+        MUNAF A. SIDDIQUI <br>Treasurer<br>
+        9820033301<br><br>
+        YASIN AYYUB QURESHI <br>Gen. Sec.<br>
+        9820193392<br><br>
+        SAYED SHAMIM AHSAN <br>Chairman Legal Advisor<br>
+        9820168581<br><br>
+        FAHAD FAROOQUE KAZI<br>
+        V. Chairman Kabrastan Comm.<br>
+        9167557778<br><br>
+        SAYYED WASIM ALI NAZIR ALI
+        <br>Chairman Muslim Wel. Committee<br>
+        9820499944<br><br>
+        IMRAN AB. RASHID QURESHI <br>
+        V. Chairman Mumisl Wel. Comm.<br>
+        9664555552<br><br>
+        HAJI RIYAZUDDIN .A QADIRI<br>
+        Chairman URS Committee<br>
+        9833054949 / 7977866814<br><br>
+        SALIM HASHAM MANSOORI<br>
+        V. Chairman URS Committee<br>
+        9819502015<br><br>
+        SALIM DAWOOD KHAN<br>
+        V. Chairman URS Committee<br>
+        8879212521<br><br>
+        </p>
+    </h4>
+    <br><br><br>
+    <p style="font-size: 30px; position:relative; left:500px; color: green;"><u><b>WE CARE FOR THE PEOPLE</u></p></b>
+
+
+</body>
+{% endblock body %}
+
+</html>
